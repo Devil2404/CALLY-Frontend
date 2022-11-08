@@ -5,13 +5,15 @@
     position: fixed;
     background: #EDF2F4;
     top: 0;
+    z-index: 100;
     justify-content: space-between;
 }
 
 #menu {
-    margin: 20px;
+    margin: 17px;
+    font-size: 2em;
+    font-weight: bold;
     cursor: pointer;
-    font-size: 1.5em;
 }
 
 #login {
@@ -37,7 +39,7 @@
     position: fixed;
     font-family: 'Zen Kurenaido', sans-serif;
     cursor: pointer;
-    z-index: 100;
+    z-index: 1000;
     width: 150px;
     height: 150px;
     background: #EDF2F4;
@@ -51,74 +53,106 @@
     letter-spacing: 4px;
 }
 
-.sidebar {
-    position: fixed;
-    top: 10vh;
-    color: #fff;
-    background: #2A2B2A;
-    height: 90vh;
-}
-
-a {
-    text-decoration: none;
-}
-
-.link {
-    display: flex;
-    color: #fff;
-    gap: 20px;
-    padding: 6px 23px;
-    margin-top: 30px;
-    font-size: 1.3em;
-    border: right 4px solid transparent;
-    transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-}
-
-.link_text {
-    white-space: nowrap;
-}
-
-.link:hover {
-    border-right: 4px solid #F2545B;
-    transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    background: #ebafb2;
-}
-
-.active {
-    border-right: 4px solid #F2545B;
-    transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    background: #ebafb2;
-}
-
-main {
-    position: fixed;
-    top: 10vh;
-    left: auto;
-    padding: 20px;
-    width: 100%;
-    height: max-content;
-    display: flex;
-}
-
 @media (max-width:999px) {
     #logo {
         left: 29%;
     }
-
-    #main {
-        left: 0;
+    .head{
+        width:100vw;
     }
+}
 
-    #card-list {
-        display: flex;
-        justify-content: space-around;
-    }
+#nav {
+    position: fixed;
+    top: 10vh;
+    left: 0;
+    height: 90vh;
+    background: #2A2B2A;
+    overflow-x: hidden;
+    transition: width 0.5s;
+    width: 70px;
+    z-index: 10;
+    transition: all ease-in-out 0.5s;
+}
 
-    .side {
-        width: 16%;
-    }
+#nav:hover {
+    width: 300px;
+}
 
-    .sidebar {
+#nav ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 5px;
+    padding-top: 40px;
+}
+
+#nav ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    color: #fff;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+#nav ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+
+}
+
+#nav ul li a:hover {
+    color: #F2545B;
+
+}
+
+.icon {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 70px;
+    text-align: center;
+}
+
+.icon ion-icon {
+    font-size: 1.5em;
+    position: relative;
+}
+
+.list {
+    position: relative;
+    display: block;
+    padding-left: 10px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 1.1em;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.inactive {
+    color: #fff;
+}
+
+.active {
+    color: #F2545B !important;
+}
+
+@media (max-width:999px) {
+    #nav {
         width: 0px;
     }
+}
+
+.mobile {
+    width: 200px !important;
+    z-index: 100;
 }

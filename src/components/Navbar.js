@@ -1,80 +1,44 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../Styles/navbar.css'
-import { motion, AnimatePresence } from "framer-motion";
-import { FaBars, FaHome, FaRegTrashAlt } from 'react-icons/fa';
-import { BsPencilFill, BsFillInfoCircleFill } from "react-icons/bs";
-import { GiNewspaper } from "react-icons/gi";
-import { BiNotepad } from "react-icons/bi";
+import { useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 
-
-import { NavLink } from "react-router-dom";
-
-const routes = [
+const ROUTES = [
     {
-        path: "/",
-        name: "Home",
-        icon: <FaHome />
+        path: "/home",
+        icon: 'home-outline',
+        route: "Home"
     },
     {
         path: "/notes",
-        name: "Notes",
-        icon: <BsPencilFill />
-    },
-    {
-        path: "/about",
-        name: "About Us",
-        icon: <BsFillInfoCircleFill />
+        icon: 'pencil-outline',
+        route: "Notes"
     },
     {
         path: "/trash",
-        name: "Trash",
-        icon: <FaRegTrashAlt />
+        icon: 'trash-outline',
+        route: "Trash"
     },
     {
         path: "/resume",
-        name: "Resume",
-        icon: <BiNotepad />
-    },
-    {
-        path: "/news",
-        name: "News",
-        icon: <GiNewspaper />
+        icon: 'clipboard-outline',
+        route: "Resume"
     }
 ]
 
-
-function Navbar({ children }) {
-
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => {
-        setIsOpen(!isOpen);
-    }
-
-    const anima = {
-        hidden: {
-            width: 0,
-            opacity: 0,
-            transition: {
-                duration: 0.5,
-            }
-        },
-        show: {
-            width: "auto",
-            opacity: 1,
-            transition: {
-                duration: 0.2,
-            }
-        }
-    }
-
+function Navbar() {
+    const location = useLocation();
+    const [menu, setMenu] = useState(false);
     return (
         <>
             <div className="head">
-                <div id="menu">
-                    <FaBars onClick={toggle} />
+                <div id="menu" onClick={() => setMenu(!menu)}>
+                    <ion-icon name="menu-outline"></ion-icon>
                 </div>
                 <div id="login">
-                    <button>Log-in</button>
+                    <NavLink to="/login">
+                        <button>Log-in</button>
+                    </NavLink>
                 </div>
             </div>
             <div id="logo">
@@ -82,53 +46,37 @@ function Navbar({ children }) {
                     CALLY
                 </h1>
             </div>
-            <motion.div animate={{
-                width: isOpen ? "200px" : "60px", transition: {
-                    duration: 0.5,
-                    type: "spring",
-                    damping: 20
+            <div
+                id="nav"
+                className={
+                    menu ? "mobile" : ""
                 }
-            }} className="sidebar">
-                <section className='routes'>
+            >
+                <ul>
                     {
-                        routes.map((rout) => (
-                            <NavLink
-                                activeClassName="active"
-                                to={rout.path}
-                                key={rout.name}
-                                className="link"
-                            >
-                                <div className="icon" >
-                                    {rout.icon}
-                                </div>
-                                <AnimatePresence>
-                                    {
-                                        isOpen
-                                        &&
-                                        <motion.div
+                        ROUTES.map((route) => {
+                            return (
+                                <li
+                                    key={route.path}
+                                >
+                                    <NavLink
+                                        to={route.path}
+                                        className={
+                                            (location.pathname === route.path) ? "active" : "inactive"
+                                        }
 
-                                            variants={
-                                                anima
-                                            }
-                                            initial="hidden"
-                                            animate="show"
-                                            exit="hidden"
-                                            className="link_text"
-                                        >
-                                            {rout.name}
-                                        </motion.div>
-                                    }
-                                </AnimatePresence>
-                            </NavLink>
-                        ))}
-                </section>
-            </motion.div>
-            <main style={
-                { left: isOpen ? "200px" : "60px" }
-            }>
-                {children}
-            </main>
-
+                                    >
+                                        <span className="icon">
+                                            <ion-icon name={route.icon}></ion-icon>
+                                        </span>
+                                        <span className="list">{route.route}</span>
+                                    </NavLink>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </div>
         </>
     )
 }
