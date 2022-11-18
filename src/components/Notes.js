@@ -3,6 +3,7 @@ import "../Styles/note.css"
 import 'css-doodle';
 
 function Notes() {
+  document.title = "Notes - CALLY"
   return (
     <div className="navbar">
       <div className="introNotes">

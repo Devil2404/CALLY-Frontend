@@ -105,6 +105,7 @@
 .info {
     width: 100%;
     height: 20%;
+    text-decoration: none;
     text-align: center;
     font-size: 1.2em;
     font-weight: bold;
@@ -112,7 +113,12 @@
     letter-spacing: 2px;
 }
 
-.info:hover {
+.info a {
+    text-decoration: none;
+    color: #000;
+}
+
+.info :hover {
     color: #F2545B;
 }
 

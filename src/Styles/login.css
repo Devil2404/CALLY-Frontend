@@ -31,13 +31,16 @@
     font-size: 1.2em;
     font-weight: 600;
     border-radius: 5px;
+    transition: all ease-in-out 0.5s;
 }
 
+.loginForm h2,
 .loginForm button {
     color: #fff;
     letter-spacing: 2px;
     background: #F2545B;
     padding: 10px;
+    text-align: center;
     border: none;
     font-size: 1.3em;
     border-radius: 10px;
@@ -45,12 +48,24 @@
     margin: 50px 10px;
 }
 
+form {
+    transition: all ease-in-out 0.5s;
+}
+
+form h4 {
+    padding: 10px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    cursor: pointer;
+    color: blue;
+}
+
 .Sign {
     display: block;
 }
 
 .Signin {
-    display: none;
+    display: none !important;
 }
 
 .loginDesc {

@@ -23,6 +23,21 @@ const ROUTES = [
         path: "/resume",
         icon: 'clipboard-outline',
         route: "Resume"
+    },
+    {
+        path: "/money",
+        icon: "bar-chart-outline",
+        route: "Budget Analysis"
+    },
+    {
+        path: "/news",
+        icon: "newspaper-outline",
+        route: "News"
+    },
+    {
+        path: "/type",
+        icon: "keypad-outline",
+        route: "Typing"
     }
 ]
 

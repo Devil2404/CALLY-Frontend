@@ -1,0 +1,109 @@
+.typeHeader {
+    width: 60%;
+    margin: 5px auto;
+    margin-top: 125px;
+    padding: 10px 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.typeHeader h1 {
+    font-size: 2.5em;
+    letter-spacing: 4px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.typeMenu {
+    display: flex;
+    background: #19323C;
+    padding: 10px 12px;
+    color: #6891a1;
+    width: max-content;
+    height: max-content;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+.typeSub,
+.typeCount {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    justify-content: space-between;
+}
+
+.typeSub {
+    width: 70%;
+}
+
+.typeSub li,
+.typeCount li {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: auto 10px;
+    letter-spacing: 2px;
+}
+
+.active {
+    color: #F2545B;
+}
+
+.typeCount li:hover,
+.typeSub li:hover {
+    color: #fff;
+}
+
+.typeSub li ion-icon {
+    font-size: 1.3em;
+    color: #F2545B;
+    margin: auto 5px;
+}
+
+.copy {
+    position: fixed;
+    bottom: 25vh;
+    left: 25vh;
+    z-index: -1;
+    width: 80%;
+    height: 45vh;
+    letter-spacing: 4px;
+    padding: 10px 12px;
+    color: #000;
+    font-size: 1.4em;
+    word-spacing: 2px;
+    font-weight: 600;
+}
+
+[contenteditable] {
+    outline: 0px solid transparent;
+}
+
+#refresh {
+    position: fixed;
+    bottom: 15vh;
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-radius: 20px;
+    left: 48%;
+    width: 80px;
+    height: 80px;
+    font-size: 2.5em;
+    transition: all ease-in-out 0.25s;
+}
+
+#refresh:hover {
+    background: #19323C;
+    color: #fff; 
+}
+
+#data {
+    z-index: 2;
+    color: #F2545B;
+}

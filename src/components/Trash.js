@@ -2,6 +2,7 @@ import React from 'react'
 import "../Styles/note.css"
 
 function Trash() {
+  document.title = "Your Bin"
   return (
     <div className='navbar'>
       <div className="introNotes">
