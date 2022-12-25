@@ -67,7 +67,7 @@
 
 .copy {
     position: fixed;
-    bottom: 25vh;
+    bottom: 20vh;
     left: 25vh;
     z-index: -1;
     width: 80%;
@@ -86,7 +86,7 @@
 
 #refresh {
     position: fixed;
-    bottom: 15vh;
+    bottom: 10vh;
     cursor: pointer;
     border: none;
     background: none;
@@ -98,12 +98,17 @@
     transition: all ease-in-out 0.25s;
 }
 
+#timer {
+    letter-spacing: 1px;
+    margin: auto auto;
+    width: max-content;
+}
+
 #refresh:hover {
     background: #19323C;
-    color: #fff; 
+    color: #fff;
 }
 
 #data {
     z-index: 2;
-    color: #F2545B;
 }
