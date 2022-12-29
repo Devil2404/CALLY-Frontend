@@ -2,8 +2,6 @@ import React from 'react'
 import "../Styles/resume.css"
 import $ from 'jquery';
 
-
-
 function Resume() {
   document.title = "Resume - CALLY"
   const tx = document.getElementsByTagName("textarea");
@@ -19,7 +17,6 @@ function Resume() {
     this.style.height = 0;
     this.style.height = (this.scrollHeight) + "px";
   }
-
 
   //to clear the all fields
   const clearAll = () => {
@@ -47,7 +44,7 @@ function Resume() {
       $("#language").append(
         `<li>
         <input type="text" placeholder="Language" />
-        <input type="rnumber" placeholder="Ex. 60%" />
+        <input type="rnumber" class="percantage" oninput="max100()" placeholder="Ex. 60%" />
         </li>`
       )
     }
@@ -75,7 +72,7 @@ function Resume() {
       $("#skills").append(
         `<li><div class="box">
         <h4><input type="text" placeholder="Skill" /></h4>
-        <input type="number" placeholder="Ex. 100%" />
+        <input type="number" class="percantage"  placeholder="Ex. 100%" />
         </div></li>`
       )
     }
@@ -216,6 +213,22 @@ function Resume() {
   }
 
   // validation for less than 100 num & Present day set automatic
+  const max100 = () => {
+    let tags = document.getElementsByClassName("percantage")
+    for (let tag of tags) {
+      if (tag.value > 100) {
+        alert("please insert less than or equal to 100 value")
+        tag.value = ""
+      }
+    }
+
+  }
+  const getDate = () => {
+    var today = new Date();
+    let date = today.getMonth() + "/" + today.getFullYear()
+    $("[placeholder=ending]").value = date
+    console.log(date)
+  }
 
   return (
     <div className="navbar">
@@ -269,7 +282,7 @@ function Resume() {
             <ul id="language">
               <li>
                 <input type="text" placeholder="Language" />
-                <input type="number" placeholder="Ex. 60%" />
+                <input type="number" className='percantage' onChange={max100} placeholder="Ex. 60%" />
               </li>
             </ul>
             <button className='adder' onClick={() => addMore("Language")}>
@@ -291,7 +304,7 @@ function Resume() {
                 <div className="box">
                   <div className="year_company">
                     <h5>
-                      <input type="month" placeholder='starting' /><br /><h6>to</h6><input type="month" placeholder='ending' />
+                      <input type="month" placeholder='starting' onClick={getDate} /><br /><h6>to</h6><input type="month" placeholder='ending' />
                     </h5>
                     <h5><input type="text" placeholder='Company Name' /></h5>
                   </div>
@@ -315,7 +328,7 @@ function Resume() {
               <li>
                 <div className="box">
                   <h4><input type="text" placeholder="Skill" /></h4>
-                  <input type="number" placeholder="Ex. 100%" />
+                  <input type="number" className='percantage' onChange={max100} placeholder="Ex. 100%" />
                 </div>
               </li>
             </ul>

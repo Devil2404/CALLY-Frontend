@@ -1,14 +1,25 @@
 import React from 'react'
 import "../Styles/type.css"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Words from "../assets/Words.js"
+import $ from 'jquery';
 
 function Type() {
   document.title = "Typing -CALLY"
   const [word, setWord] = useState(false);
   const [time, setTime] = useState(false);
-  var count = 0;
-  // for set timer color
+  var wordlength = 0, str = "", letter = 0, current = 0, passagelength = 0, rigth = 0, wrongCount = 0;
+
+  useEffect(() => {
+    stringGeneration(1, "levels")
+    // eslint-disable-next-line
+  }, [])
+
+  //task 
+  //5) auto slider
+  //6) timer 
+
+  //1: for set timer color
   const active = (x, y) => {
     let a = document.getElementsByClassName("number");
     for (let b of a) {
@@ -18,7 +29,7 @@ function Type() {
     stringGeneration(parseInt(x), y)
   }
 
-  //for get a details of string
+  //2: for get a details of string
   const getDetails = (typeCount) => {
     var typeSub = ""
     let a = document.getElementsByClassName("active");
@@ -27,41 +38,136 @@ function Type() {
     stringGeneration(typeCount, typeSub)
   }
 
-  //for generation string
+  //3: for reset everything 
+  const restart = () => {
+    document.getElementById("words").innerHTML = "";
+    document.getElementById("wordsInput").value = "";
+    document.getElementById("wordsInput").focus();
+    current = 0;
+    rigth = 0;
+    wrongCount = 0;
+  }
+
+  //4: for generation string
   const stringGeneration = (typeCount, typeSub) => {
-    let str = ''
+    restart()
+    let word = '', divContainer;
     if (typeSub === "words")
       typeCount = typeCount > 1 ? Math.pow(5, 2) * Math.pow(2, typeCount - 2) : 10;
     else
       typeCount = typeCount > 1 ? 30 * Math.pow(2, typeCount - 1) : 30;
+
+    passagelength = typeCount
     for (let i = 0; i < typeCount; i++) {
-      str += Words[Math.floor(Math.random() * 490)] + " "
+      word = Words[Math.floor(Math.random() * 490)]
+      divContainer = document.createElement("div")
+      divContainer.setAttribute("class", "word");
+      if (i === 0)
+        divContainer.classList.add("current")
+      for (let letter of word) {
+        divContainer.innerHTML += `<letter>${letter}</letter>`
+      }
+      $("#words").append(divContainer)
     }
-    setData(str)
   }
 
-  //reset all things & set data
-  const setData = (str) => {
-    document.getElementById("read").innerText = str
-    document.getElementById("data").innerText = ""
-    count = 0;
+
+  //5: when correct input 
+  const correct = () => {
+    wordlength--;
+    $(`.current letter:nth-child(${letter + 1})`).addClass("correct")
+    letter++;
+    rigth++
   }
 
-  //for checking 
+  //6: when wrong input
+  const wrong = () => {
+    wordlength--;
+    $(`.current letter:nth-child(${letter + 1})`).addClass("wrong")
+    letter++;
+    wrongCount++
+  }
+
+  //7: for restart the input field 
+  const reinitialize = (element, check) => {
+    str = element.innerText
+    wordlength = str.length
+    letter = check === "b" ? wordlength - 1 : 0
+  }
+
+
+  //8: for current passing 
+  const currentPassing = (x) => {
+    let tags = document.getElementsByClassName("word");
+    tags[current].classList.remove("current")
+    if (passagelength - 1 > current && x === "n")
+      tags[current + 1].classList.add("current")
+    else if (passagelength - 1 >= current && x === "b" && current > -1) {
+      tags[current - 1].classList.add("current")
+      tags[current].classList.remove("error")
+      reinitialize(tags[current - 1], x)
+    }
+  }
+
+  //9: this is for emergency purpose if current is missing then its helpful
+  const noCurrent = () => {
+    let tags = document.getElementsByClassName("word")
+    if (document.getElementsByClassName("current").length === 0) {
+      tags[current].classList.add("current")
+      return tags[current]
+    }
+    return document.getElementsByClassName("current")[0]
+  }
+
+
+  //10: for checking 
   const check = (e) => {
-    let dataStr = document.getElementById("data")
-    let readStr = document.getElementById("read").innerText
-    if (readStr[count] === e.nativeEvent.data) {
-      console.log("Yes", readStr[count])
-      count++;
-    }
-    else if (e.nativeEvent.data === null) {
-      console.log("back")
-      count--;
+    let l = document.getElementById("wordsInput")
+    let element = noCurrent()
+    if (l.value.length === 1 && e.nativeEvent.data !== null) {
+      reinitialize(element)
+      if (str[letter] === e.nativeEvent.data) {
+        correct()
+      }
+      else {
+        wrong()
+      }
     }
     else {
-      console.log("no")
+      if (str[letter] === e.nativeEvent.data) {
+        correct()
+      }
+      else if (e.nativeEvent.data === null) {
+        let ele = $(`.current letter:nth-child(${l.value.length + 1})`)
+        wordlength++
+        ele.hasClass("correct") ? rigth-- : wrongCount--
+        ele.hasClass("correct") ? ele.removeClass("correct") : ele.removeClass("wrong")
+        if (ele.hasClass("extra")) { ele.remove(); wrongCount-- }
+        letter--;
+        if ((letter < 0 || l.value === "") && current > 0) {
+          currentPassing("b");
+          l.value = str
+          current--;
+        }
+      }
+      else if (wordlength <= 0 && e.nativeEvent.data !== null && e.nativeEvent.data.includes(" ")) {
+        l.value = ""
+        //for undeline 
+        if (element.innerHTML.includes("wrong")) {
+          element.classList.add("error")
+        }
+        //for passing on current
+        currentPassing("n");
+        current++;
+      }
+      else if (wordlength <= 0) {
+        element.innerHTML += `<letter class="wrong extra">${e.nativeEvent.data}</letter>`
+      }
+      else {
+        wrong()
+      }
     }
+
   }
 
   return (
@@ -155,10 +261,9 @@ function Type() {
       <h2 id="timer">
         25
       </h2>
-      <div className="copy" id="read" >
-        top relationship green body little who town up four at question need say last may miss where two ship weight through rock now oil problem sun hold such certain there if little area people morning to since soon west bottom include list more love later north best cut white both example story said power our white relationship will act great
+      <input id="wordsInput" tabIndex="0" autoComplete="off" autoCapitalize="off" autoCorrect="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" list="autocompleteOff" autoFocus onInput={(e) => check(e)} />
+      <div className="copy" id="words">
       </div>
-      <div className="copy" onInput={check} contentEditable="true" id="data"></div>
       <button id='refresh'>
         <ion-icon name="refresh-outline" onClick={getDetails}></ion-icon>
       </button>
