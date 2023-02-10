@@ -5,7 +5,6 @@ import Greet from '../assets/Welcome-rafiki.svg';
 import Resume from '../assets/Online resume-rafiki.svg';
 import News from '../assets/News-bro.svg';
 import Type from '../assets/Code typing-bro.svg';
-import Money from '../assets/Analytics-bro.svg';
 import Notes from '../assets/Taking notes-rafiki.svg';
 function Home() {
   document.title = "CALLY - Friendship";
@@ -19,11 +18,6 @@ function Home() {
       path: "/notes",
       src: Notes,
       name: "Notes"
-    },
-    {
-      path: "/money",
-      src: Money,
-      name: "Budget Analysis"
     },
     {
       path: "/news",

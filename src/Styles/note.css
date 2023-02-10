@@ -1,136 +1,180 @@
-.introNotes {
-    width: 70%;
-    height: 60vh;
-    margin: auto auto;
-    margin-top: 100px;
-    border-radius: 10px;
-    background: silver;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.doodle {
-    /* overflow: hidden; */
-    width: 40%;
-    height: 100%;
-}
-
-.introMsg {
-    width: 60%;
-    height: max-content;
-    margin: auto auto;
-    border-left: 5px solid #000;
-    border-radius: 8px;
-    padding: 30px;
-}
-
-.introMsg h1 {
-    letter-spacing: 4px;
-    font-size: 3em;
-    font-weight: 600;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.introMsg h4 {
-    letter-spacing: 3px;
-    font-size: 0.9em;
-    margin: 5px auto;
-    text-align: center;
-
-}
-
 .mainNotes {
-    width: 95%;
-    height: 10vh;
+    width: 80%;
     padding: 15px;
     display: flex;
-    margin-left: 9.7vh;
-}
-
-.notes {
-    width: 90%;
-    height: max-content;
     margin: auto auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
 }
 
-.note {
-    width: 25vw;
+#intro {
+    margin: auto auto;
+    margin-top: 160px;
+    width: max-content;
+    text-transform: capitalize;
+    letter-spacing: 2px
+}
+
+.mainNotes h2,
+.mainNotes p {
+    letter-spacing: 2px;
+    font-size: 100%;
+    font-weight: bold;
     color: #fff;
-    padding: 16px 20px;
+    padding: 5px;
     height: max-content;
-    background: #19323C;
-    margin: 15px;
-    border: none;
-    border-radius: 6px 45px 6px 45px;
 }
 
-.noteTitle {
+.mainNotes ul,
+li {
+    list-style: none;
+}
+
+.mainNotes ul {
+    overflow: hidden;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 2px;
-    margin-bottom: 4px;
+    height: max-content;
 }
 
-.noteTitle h1 {
-    letter-spacing: 4px;
-}
-
-.noteTitle ion-icon {
-    font-size: 1.8em;
-    align-self: center;
+.mainNotes ul li {
+    text-decoration: none;
+    color: #000;
+    background: rgb(214, 24, 103);
     cursor: pointer;
-}
-
-.noteDesc {
-    margin: 4px;
-    letter-spacing: 2px;
-}
-
-.noteEnd {
+    padding: 1em;
+    box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+    transform: rotate(-6deg);
+    transition: -webkit-transform .15s linear;
+    margin: 2em;
+    float: left;
+    width: 300px;
+    height: 250px;
     display: flex;
-    margin: 10px;
-    justify-content: space-between;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.noteMenu {
-    width: 18%;
+.mainNotes ul li:nth-child(even) {
+    transform: rotate(4deg);
+    position: relative;
+    top: 5px;
+    background: #F2545B
 }
 
-.noteMenu ion-icon {
-    margin: 2px;
-    font-size: 1.1em;
-    cursor: pointer;
+.mainNotes ul li:nth-child(3n) {
+    transform: rotate(-3deg);
+    position: relative;
+    top: -5px;
+    background: #19323C;
 }
 
-.noteDate h6 {
-    font-size: 0.9em;
+.mainNotes ul li:nth-child(5n) {
+    transform: rotate(5deg);
+    position: relative;
+    top: -10px;
+    background: #818781;
+}
+
+.mainNotes ul li:hover,
+.mainNotes ul li:focus {
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
+    transform: scale(1.25);
+    position: relative;
+    z-index: 5;
+}
+
+.mainNotes ul {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 2em;
+}
+
+.mainNotes ul li p {
+    font-weight: normal;
+    /* overflow: hidden; */
+    width: 100%;
+}
+
+#add {
+    transform: none;
+    box-shadow: none;
+    background-color: transparent;
+    border: 2px dashed blue;
+    color: blue;
+}
+
+.viewNote {
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 1000 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+    padding: 2em !important;
+    transform: none !important;
+    cursor: auto !important;
+}
+
+.viewNote:hover {
+    transform: none;
+}
+
+.viewNote h2 {
+    font-size: 2.5em;
+    border-bottom: 2px solid;
+    letter-spacing: 5px;
+    width: 90%;
+    margin-left: 80px;
+}
+
+.viewNote p {
+    margin: 15px auto;
     letter-spacing: 2px;
+    font-size: 1.3em;
+    padding: 10px 12px;
+    height: 80%;
+    overflow-y: scroll;
 }
 
+#back {
+    font-size: 3em;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    position: fixed;
+    top: 40px;
+    left: 32px;
+    cursor: pointer;
+    z-index: 1001;
+    display: none;
+}
+
+[contenteditable] {
+    outline: 0px solid transparent;
+}
 
 @media (max-width:999px) {
-    .introMsg {
-        border-radius: 0px;
-        border-left: 0px;
-        width: 100%;
-    }
-
     .mainNotes {
         margin: auto auto;
-    }
-
-    .note,
-    .notes {
         width: 100%;
     }
 
-    .introNotes {
-        height: max-content;
-        margin-top: 150px;
+    .mainNotes ul li {
+        width: 85%;
     }
+
+    #back {
+        left: 20px;
+        font-size: 30px;
+    }
+
+    .viewNote {
+        padding: 22px !important;
+    }
+
+    .viewNote h2 {
+        font-size: 40px;
+        margin-left: 40px;
+    }
+
 }

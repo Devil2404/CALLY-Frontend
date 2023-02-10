@@ -25,11 +25,6 @@ const ROUTES = [
         route: "Resume"
     },
     {
-        path: "/money",
-        icon: "bar-chart-outline",
-        route: "Budget Analysis"
-    },
-    {
         path: "/news",
         icon: "newspaper-outline",
         route: "News"

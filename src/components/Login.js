@@ -3,7 +3,7 @@ import "../Styles/login.css"
 import { useState } from 'react'
 
 function Login() {
-    document.title="Login - CALLY"
+    document.title = "Login - CALLY"
     const [sign, setSign] = useState(false);
     const [forget, setForget] = useState(false);
     const [send, setSend] = useState(false);
@@ -83,7 +83,7 @@ function Login() {
                     </form> */}
                 </div>
                 <div className="loginDoodle">
-
+                    
                 </div>
             </div>
             <div

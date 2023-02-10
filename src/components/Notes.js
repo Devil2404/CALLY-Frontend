@@ -1,189 +1,50 @@
 import React from 'react'
 import "../Styles/note.css"
 import 'css-doodle';
+// import noteContext from '../context/noteContext.js';
 
 function Notes() {
   document.title = "Notes - CALLY"
+  // const notes = useContext(noteContext);
+
+  const view = (id) => {
+    document.getElementById(id).classList.add("viewNote")
+    document.getElementById("back").style.display = "block"
+  }
+
+  const back = () => {
+    const notes = document.getElementsByClassName("viewNote")[0];
+    document.getElementById(notes.id).classList.remove("viewNote")
+    document.getElementById("back").style.display = "none"
+  }
+
   return (
     <div className="navbar">
-      <div className="introNotes">
-        <div className="doodle">
-          <div>
-            {/* <css-doodle>
-              `
-              @grid: 8 / 90%;
-              @shape: circle;
-
-              transition: .2s @r(.6s);
-              border-radius: @pick(100% 0, 0 100%);
-              transform: scale(@r(.25, 1.25));
-
-              background: hsla(
-              calc(240 - 6 * @x * @y),
-              70%, 68%, @r.8
-              );
-              `
-            </css-doodle> */}
-
-          </div>
-        </div>
-        <div className="introMsg">
-          <h1>
-            Notes
-          </h1>
-          <h4>
-            create your notes today
-          </h4>
-        </div>
-      </div>
+      <h2 id='intro'>
+        Make Your wish list today
+      </h2>
       <div className="mainNotes">
-        <div className="notes">
-          <div className="note">
-            <div className="noteTitle">
-              <h1>
-                Title
-              </h1>
-              <ion-icon name="close-circle-outline"></ion-icon>
-            </div>
-            <div className="noteDesc">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia tenetur impedit deserunt ea quaerat vitae a architecto exercitationem, culpa ipsum? Nulla, numquam maxime porro iste nesciunt iusto quidem unde, reprehenderit quam, esse amet adipisci sed laboriosam molestias itaque assumenda illo quos ullam obcaecati ducimus? Laudantium consectetur obcaecati animi eius ullam!
-            </div>
-            <div className="noteEnd">
-              <div className="noteMenu">
-                <ion-icon name="pencil-outline"></ion-icon>
-                <ion-icon
-                  style={{ float: "right" }}
-                  name="star-outline"></ion-icon>
-              </div>
-              <div className="noteDate">
-                <h6>
-                  27/07/2030
-                </h6>
-              </div>
-            </div>
-          </div>
-          <div className="note">
-            <div className="noteTitle">
-              <h1>
-                Title
-              </h1>
-              <ion-icon name="close-circle-outline"></ion-icon>
-            </div>
-            <div className="noteDesc">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia tenetur impedit deserunt ea quaerat vitae a architecto exercitationem, culpa ipsum? Nulla, numquam maxime porro iste nesciunt iusto quidem unde, reprehenderit quam, esse amet adipisci sed laboriosam molestias itaque assumenda illo quos ullam obcaecati ducimus? Laudantium consectetur obcaecati animi eius ullam!
-            </div>
-            <div className="noteEnd">
-              <div className="noteMenu">
-                <ion-icon name="pencil-outline"></ion-icon>
-                <ion-icon
-                  style={{ float: "right" }}
-                  name="star-outline"></ion-icon>
-              </div>
-              <div className="noteDate">
-                <h6>
-                  27/07/2030
-                </h6>
-              </div>
-            </div>
-          </div>
-          <div className="note">
-            <div className="noteTitle">
-              <h1>
-                Title
-              </h1>
-              <ion-icon name="close-circle-outline"></ion-icon>
-            </div>
-            <div className="noteDesc">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia tenetur impedit deserunt ea quaerat vitae a architecto exercitationem, culpa ipsum? Nulla, numquam maxime porro iste nesciunt iusto quidem unde, reprehenderit quam, esse amet adipisci sed laboriosam molestias itaque assumenda illo quos ullam obcaecati ducimus? Laudantium consectetur obcaecati animi eius ullam!
-            </div>
-            <div className="noteEnd">
-              <div className="noteMenu">
-                <ion-icon name="pencil-outline"></ion-icon>
-                <ion-icon
-                  style={{ float: "right" }}
-                  name="star-outline"></ion-icon>
-              </div>
-              <div className="noteDate">
-                <h6>
-                  27/07/2030
-                </h6>
-              </div>
-            </div>
-          </div>
-          <div className="note">
-            <div className="noteTitle">
-              <h1>
-                Title
-              </h1>
-              <ion-icon name="close-circle-outline"></ion-icon>
-            </div>
-            <div className="noteDesc">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia tenetur impedit deserunt ea quaerat vitae a architecto exercitationem, culpa ipsum? Nulla, numquam maxime porro iste nesciunt iusto quidem unde, reprehenderit quam, esse amet adipisci sed laboriosam molestias itaque assumenda illo quos ullam obcaecati ducimus? Laudantium consectetur obcaecati animi eius ullam!
-            </div>
-            <div className="noteEnd">
-              <div className="noteMenu">
-                <ion-icon name="pencil-outline"></ion-icon>
-                <ion-icon
-                  style={{ float: "right" }}
-                  name="star-outline"></ion-icon>
-              </div>
-              <div className="noteDate">
-                <h6>
-                  27/07/2030
-                </h6>
-              </div>
-            </div>
-          </div>
-          <div className="note">
-            <div className="noteTitle">
-              <h1>
-                Title
-              </h1>
-              <ion-icon name="close-circle-outline"></ion-icon>
-            </div>
-            <div className="noteDesc">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia tenetur impedit deserunt ea quaerat vitae a architecto exercitationem, culpa ipsum? Nulla, numquam maxime porro iste nesciunt iusto quidem unde, reprehenderit quam, esse amet adipisci sed laboriosam molestias itaque assumenda illo quos ullam obcaecati ducimus? Laudantium consectetur obcaecati animi eius ullam!
-            </div>
-            <div className="noteEnd">
-              <div className="noteMenu">
-                <ion-icon name="pencil-outline"></ion-icon>
-                <ion-icon
-                  style={{ float: "right" }}
-                  name="star-outline"></ion-icon>
-              </div>
-              <div className="noteDate">
-                <h6>
-                  27/07/2030
-                </h6>
-              </div>
-            </div>
-          </div>
-          <div className="note">
-            <div className="noteTitle">
-              <h1>
-                Title
-              </h1>
-              <ion-icon name="close-circle-outline"></ion-icon>
-            </div>
-            <div className="noteDesc">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia tenetur impedit deserunt ea quaerat vitae a architecto exercitationem, culpa ipsum? Nulla, numquam maxime porro iste nesciunt iusto quidem unde, reprehenderit quam, esse amet adipisci sed laboriosam molestias itaque assumenda illo quos ullam obcaecati ducimus? Laudantium consectetur obcaecati animi eius ullam!
-            </div>
-            <div className="noteEnd">
-              <div className="noteMenu">
-                <ion-icon name="pencil-outline"></ion-icon>
-                <ion-icon
-                  style={{ float: "right" }}
-                  name="star-outline"></ion-icon>
-              </div>
-              <div className="noteDate">
-                <h6>
-                  27/07/2030
-                </h6>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ion-icon name="arrow-back-outline" id="back" onClick={back}></ion-icon>
+        <ul>
+          <li id="1" onClick={() => view("1")}>
+            <h2
+              contentEditable="true"
+              suppressContentEditableWarning="true"
+            >Title #1</h2>
+            <p
+              contentEditable="true"
+              suppressContentEditableWarning="true"
+            >Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem sapiente expedita, maxime consequuntur tenetur quos nesciunt porro dolorem repellendus ipsa adipisci aliquid dolorum laboriosam architecto nihil sunt exercitationem eos nostrum incidunt! Maiores asperiores, sed alias enim quibusdam molestiae commodi quos est dolore eius quod cum quasi necessitatibus omnis excepturi sunt.
+            </p>
+          </li>
+          <li>
+            <h2>Title #1</h2>
+            <p>Buying a CAR!</p>
+          </li>
+        </ul>
       </div>
+
     </div>
   )
 }
