@@ -37,6 +37,21 @@ function Notes() {
             >Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem sapiente expedita, maxime consequuntur tenetur quos nesciunt porro dolorem repellendus ipsa adipisci aliquid dolorum laboriosam architecto nihil sunt exercitationem eos nostrum incidunt! Maiores asperiores, sed alias enim quibusdam molestiae commodi quos est dolore eius quod cum quasi necessitatibus omnis excepturi sunt.
             </p>
+            <div className="functions">
+              <div className="pin">
+                <img src="" alt="" />
+              </div>
+              <div className="time">
+                time
+              </div>
+              <div className="color">
+                color
+              </div>
+              <div className="delete">
+                delete
+              </div>
+            </div>
+
           </li>
           <li>
             <h2>Title #1</h2>

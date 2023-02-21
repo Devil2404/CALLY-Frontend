@@ -139,6 +139,7 @@ function Type() {
       }
       else if (e.nativeEvent.data === null) {
         let ele = $(`.current letter:nth-child(${l.value.length + 1})`)
+        let nextEle=$(`.current letter:nth-child(${letter + 1})`)
         wordlength++
         ele.hasClass("correct") ? rigth-- : wrongCount--
         ele.hasClass("correct") ? ele.removeClass("correct") : ele.removeClass("wrong")
@@ -148,6 +149,19 @@ function Type() {
           currentPassing("b");
           l.value = str
           current--;
+        }
+        if (current === 0 && $(".error").length > 0) {
+          $(".error").removeClass("error")
+        }
+        if (nextEle.is(".correct,.wrong,.extra")) {
+          if(nextEle.hasClass("extra")) {
+            nextEle.remove()
+          }
+          else{
+            nextEle.removeClass("correct")
+            nextEle.removeClass("wrong")
+          }
+
         }
       }
       else if (wordlength <= 0 && e.nativeEvent.data !== null && e.nativeEvent.data.includes(" ")) {
@@ -261,7 +275,7 @@ function Type() {
       <h2 id="timer">
         25
       </h2>
-      <input id="wordsInput" tabIndex="0" autoComplete="off" autoCapitalize="off" autoCorrect="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" list="autocompleteOff" autoFocus onInput={(e) => check(e)} />
+      <input id="wordsInput" tabIndex="0" autoComplete="off" autoCapitalize="off" autoCorrect="off" data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" list="autocompleteOff" spellCheck="false" autoFocus onInput={(e) => check(e)} />
       <div className="copy" id="words">
       </div>
       <button id='refresh'>
